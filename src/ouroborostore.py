@@ -4,7 +4,6 @@ from tabulate import tabulate
 
 #enlace base
 base = 'https://www.ouroborostore.cl/categoria-producto/juegos-de-mesa/page/'
-
 #itera por  página
 for page_number in range(1,2):
     #solicita y carga contenido de página
