@@ -33,5 +33,5 @@ for page_number in range(1,2):
         headers = ["Título", "Precio Normal", "Precio Oferta", "Enlace"]
         print(tabulate(data, headers=headers, tablefmt="grid"))
     else:
-        print("Error: las listas de títulos y precios no tienen la misma longitud")
+        print("Error: las listas de títuloss y precios no tienen la misma longitud")
         
