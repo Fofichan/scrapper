@@ -1,11 +1,16 @@
 from bs4 import BeautifulSoup
 import requests
 from tabulate import tabulate
+import sqlite3
+
+#create ouroborostore table
+conn = sqlite3.connect('db.sqlite3')
+
 
 #enlace base
 base = 'https://www.ouroborostore.cl/categoria-producto/juegos-de-mesa/page/'
 #itera por  página
-for page_number in range(1,2):
+for page_number in range(1,999):
     #solicita y carga contenido de página
     url = base + str(page_number) + '/'
     response = requests.get(url)
@@ -29,9 +34,11 @@ for page_number in range(1,2):
             enlace = tituloElement[i].find('a').get('href')
             #añade a la lista
             data.append([titulo, precio_normal, precio_oferta, enlace])
-        #define e imprime tabla
-        headers = ["Título", "Precio Normal", "Precio Oferta", "Enlace"]
-        print(tabulate(data, headers=headers, tablefmt="grid"))
+            print("appending: " + titulo)
+            #inserta en db
+            c = conn.cursor()
+            c.execute("INSERT INTO ouroborostore (titulo, precio_normal, precio_oferta, enlace) VALUES (?, ?, ?, ?)", (titulo, precio_normal, precio_oferta, enlace))
+            conn.commit()
     else:
         print("Error: las listas de títuloss y precios no tienen la misma longitud")
         
