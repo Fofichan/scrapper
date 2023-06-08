@@ -6,7 +6,6 @@ import sqlite3
 #create ouroborostore table
 conn = sqlite3.connect('db.sqlite3')
 
-
 #enlace base
 base = 'https://www.ouroborostore.cl/categoria-producto/juegos-de-mesa/page/'
 #itera por  página
